@@ -62,33 +62,35 @@ def jouer():
     tour = 0  
 
     while True:
-        morpion_tableau()
-        print(f"Tour du joueur {joueur_actuel} :")
-        # le joueur choisi une case dans le terminal
-        choix = int(input("Choisissez une case (0-8) : "))
+        try:
+            morpion_tableau()
+            print(f"Tour du joueur {joueur_actuel} :")
+            # le joueur choisi une case dans le terminal
+            choix = int(input("Choisissez une case (0-8) : "))
         
-        # Si la case n'est pas égal a un espace vide  
-        if tableau[choix] != J0:                            
-            print("Case deja occupée")                     
-            continue
+            # Si la case n'est pas égal a un espace vide  
+            if tableau[choix] != J0:                            
+                print("Case deja occupée")                     
+                continue
 
-        # Permet de remplacer l'espace vide choisi par le joueur (X ou O)
-        tableau[choix] = joueur_actuel
+            # Permet de remplacer l'espace vide choisi par le joueur (X ou O)
+            tableau[choix] = joueur_actuel
 
-        # Si une condition de victoires est respecté alors le jeu s'arrete
-        if win_cond(joueur_actuel):
-            morpion_tableau()
-            print(f"Le joueur {joueur_actuel} a gagné!")
-            break
+            # Si une condition de victoires est respecté alors le jeu s'arrete
+            if win_cond(joueur_actuel):
+                morpion_tableau()
+                print(f"Le joueur {joueur_actuel} a gagné!")
+                break
 
-        # Si la condition pour une égalité est respecté alors le jeu s'arrete
-        if match_nul():  
-            morpion_tableau()
-            print("Match nul!")
+            # Si la condition pour une égalité est respecté alors le jeu s'arrete
+            if match_nul():  
+                morpion_tableau()
+                print("Match nul!")
             
             
-        else:
+        except(IndexError):
             print("Valeur invalide")
+            continue
 
 
 
